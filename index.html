@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HK Recharge</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
+}
+
+header {
+    background: linear-gradient(135deg, #0757d9, #00a878);
+    color: white;
+    padding: 22px 18px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    margin: 7px 0 0;
+    font-size: 15px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 18px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 21px;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #0757d9;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.service {
+    background: #f0f6ff;
+    padding: 18px 10px;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.service span {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>⚡ HK Recharge</h1>
+    <p>हर रिचार्ज, आसान और भरोसेमंद</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>📱 Mobile Recharge</h2>
+
+        <input type="tel"
+               placeholder="मोबाइल नंबर"
+               maxlength="10">
+
+        <select>
+            <option>ऑपरेटर चुनें</option>
+            <option>Jio</option>
+            <option>Airtel</option>
+            <option>Vi</option>
+            <option>BSNL</option>
+        </select>
+
+        <input type="number"
+               placeholder="रिचार्ज राशि ₹">
+
+        <button>Recharge करें</button>
+    </div>
+
+    <div class="card">
+        <h2>हमारी सेवाएँ</h2>
+
+        <div class="services">
+
+            <div class="service">
+                <span>📱</span>
+                Mobile Recharge
+            </div>
+
+            <div class="service">
+                <span>📺</span>
+                DTH Recharge
+            </div>
+
+            <div class="service">
+                <span>⚡</span>
+                Electricity Bill
+            </div>
+
+            <div class="service">
+                <span>📜</span>
+                Recharge History
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 HK Recharge<br>
+    Secure & Easy Recharge
+</footer>
+
+</body>
+</html>
