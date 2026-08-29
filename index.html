@@ -3,25 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HK Recharge</title>
+    <title>HK Recharge - Mobile Plan & Recharge</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 20px;
             text-align: center;
-            background-color: #f4f4f9;
-            margin-top: 50px;
         }
-        h1 {
-            color: #0076ff;
+        .container {
+            max-width: 400px;
+            background: white;
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        p {
-            color: #333;
+        h2 { color: #0076ff; margin-bottom: 20px; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .btn-submit {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
             font-size: 18px;
+            margin-top: 15px;
         }
+        .btn-submit:hover { background-color: #218838; }
     </style>
 </head>
 <body>
-    <h1>HK Recharge में आपका स्वागत है</h1>
-    <p>हमारी वेबसाइट अभी बन रही है, जल्द ही लाइव होगी।</p>
+
+<div class="container">
+    <h2>HK Recharge</h2>
+    <p>अपना मोबाइल रिचार्ज करें</p>
+    
+    <form id="rechargeForm">
+        <!-- मोबाइल नंबर -->
+        <input type="tel" id="mobileNumber" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10" required pattern="[0-9]{10}">
+        
+        <!-- ऑपरेटर चयन -->
+        <select id="operator" required>
+            <option value="">सिम ऑपरेटर चुनें</option>
+            <option value="Jio">Jio</option>
+            <option value="Airtel">Airtel</option>
+            <option value="Vi">Vi (Vodafone Idea)</option>
+            <option value="BSNL">BSNL</option>
+        </select>
+        
+        <!-- रिचार्ज प्लान -->
+        <select id="amount" required>
+            <option value="">रिचार्ज प्लान चुनें</option>
+            <option value="239">₹239 (1.5GB/दिन - 28 दिन)</option>
+            <option value="299">₹299 (2GB/दिन - 28 दिन)</option>
+            <option value="666">₹666 (1.5GB/दिन - 84 दिन)</option>
+            <option value="749">₹749 (2GB/दिन - 90 दिन)</option>
+        </select>
+        
+        <!-- रिचार्ज बटन -->
+        <input type="submit" class="btn-submit" value="अभी रिचार्ज करें">
+    </form>
+</div>
+
+<script>
+    document.getElementById('rechargeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        var num = document.getElementById('mobileNumber').value;
+        var op = document.getElementById('operator').value;
+        var amt = document.getElementById('amount').value;
+        
+        // UPI पेमेंट लिंक जेनरेट करना (यहाँ अपनी UPI ID डालें)
+        var upiId = "YOUR_UPI_ID@upi"; 
+        var name = "HK Recharge";
+        var upiUrl = "upi://pay?pa=" + upiId + "&pn=" + encodeURIComponent(name) + "&am=" + amt + "&cu=INR&tn=" + encodeURIComponent(op + " Recharge for " + num);
+        
+        // यूजर को पेमेंट ऐप पर भेजना
+        window.location.href = upiUrl;
+    });
+</script>
+
 </body>
 </html>
