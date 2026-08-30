@@ -3,801 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>HK Recharge - Mobile Recharge & Bill Payment</title>  
+    <title>HK Recharge - Mobile & DTH Payments</title>
+    <!-- रेज़रपे की मुख्य लाइव स्क्रिप्ट लाइब्रेरी -->
     <script src="https://razorpay.com"></script>
-    
-    <meta name="description"
-        content="HK Recharge - Mobile Recharge, DTH Recharge और Electricity Bill Payment">
-
-    <meta name="theme-color" content="#0b63f6">
-
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: Arial, sans-serif;
             background: #f3f6fb;
             color: #172033;
+            padding: 20px;
         }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #075ee8, #12a4ff);
-            color: white;
-            padding: 18px 16px;
-            text-align: center;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .tagline {
-            margin-top: 5px;
-            font-size: 14px;
-            opacity: 0.95;
-        }
-
-        /* Main */
         .container {
-            width: 100%;
             max-width: 600px;
             margin: auto;
-            padding: 18px 14px 40px;
-        }
-
-        /* Welcome */
-        .welcome {
-            text-align: center;
-            margin: 10px 0 18px;
-        }
-
-        .welcome h1 {
-            font-size: 24px;
-            margin-bottom: 6px;
-        }
-
-        .welcome p {
-            color: #657084;
-            font-size: 14px;
-        }
-
-        /* Service buttons */
-        .services {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 18px;
-        }
-
-        .service-btn {
-            border: none;
             background: white;
-            padding: 13px 5px;
+            padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-            font-size: 12px;
-            font-weight: bold;
-            color: #26344d;
-            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-
-        .service-btn.active {
-            background: #0b63f6;
-            color: white;
-        }
-
-        .service-icon {
-            display: block;
-            font-size: 25px;
-            margin-bottom: 5px;
-        }
-
-        /* Card */
-        .card {
-            background: white;
-            border-radius: 18px;
-            padding: 20px;
-            box-shadow: 0 5px 22px rgba(0,0,0,0.09);
-        }
-
-        .card h2 {
-            font-size: 20px;
-            margin-bottom: 17px;
-        }
-
-        /* Form */
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 7px;
-        }
-
-        input,
-        select {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #d7dce5;
-            border-radius: 10px;
-            font-size: 16px;
-            outline: none;
-            background: white;
-        }
-
-        input:focus,
-        select:focus {
-            border-color: #0b63f6;
-        }
-
-        /* Plans */
-        .plans {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .plan {
-            border: 1px solid #d7dce5;
-            background: white;
-            border-radius: 9px;
-            padding: 10px 4px;
+        header {
             text-align: center;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 13px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f4f9;
         }
-
-        .plan:hover {
-            border-color: #0b63f6;
+        h1 {
             color: #0b63f6;
+            font-size: 28px;
         }
-
-        /* Recharge Button */
-        .recharge-btn {
-            width: 100%;
-            border: none;
-            background: linear-gradient(135deg, #0b63f6, #08a4ff);
-            color: white;
-            padding: 15px;
-            border-radius: 11px;
-            font-size: 17px;
-            font-weight: bold;
-            margin-top: 8px;
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            background: #f0f4f9;
+            border-radius: 8px;
+            padding: 5px;
+        }
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
             cursor: pointer;
-        }
-
-        .recharge-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 18px;
-        }
-
-        .feature {
-            background: white;
-            border-radius: 12px;
-            padding: 13px 5px;
-            text-align: center;
-            font-size: 11px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-        }
-
-        .feature-icon {
-            font-size: 22px;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            color: #667085;
-            font-size: 12px;
-            padding: 20px 10px;
-        }
-
-        .demo {
-            margin-top: 10px;
-            color: #d97706;
+            border-radius: 6px;
             font-weight: bold;
+            color: #5e6c84;
         }
-
-        /* Hidden */
-        .hidden {
+        .tab.active {
+            background: white;
+            color: #0b63f6;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .form-section {
             display: none;
         }
-
-        @media (max-width: 380px) {
-            .services {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-
-            .plans {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-
-            .card {
-                padding: 16px;
-            }
+        .form-section.active {
+            display: block;
+        }
+        .input-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd4e0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+        input:focus, select:focus {
+            border-color: #0b63f6;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #0b63f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #084ec2;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #8996a6;
         }
     </style>
 </head>
-
 <body>
 
-<header>
-    <div class="logo">⚡ HK RECHARGE</div>
-    <div class="tagline">Fast • Simple • Secure</div>
-</header>
+<div class="container">
+    <header>
+        <h1>HK Recharge</h1>
+        <p>सुरक्षित और तेज़ मोबाइल एवं DTH रीचार्ज</p>
+    </header>
 
-<main class="container">
-
-    <div class="welcome">
-        <h1>Recharge & Bill Payment</h1>
-        <p>मोबाइल, DTH और Electricity Bill की सुविधा</p>
+    <!-- टैब विकल्प -->
+    <div class="tab-container">
+        <div class="tab active" onclick="switchTab('mobile')">मोबाइल रीचार्ज</div>
+        <div class="tab" onclick="switchTab('dth')">DTH रीचार्ज</div>
     </div>
 
-    <!-- Services -->
-    <div class="services">
-
-        <button class="service-btn active" onclick="showService('mobile', this)">
-            <span class="service-icon">📱</span>
-            Mobile
-        </button>
-
-        <button class="service-btn" onclick="showService('dth', this)">
-            <span class="service-icon">📺</span>
-            DTH
-        </button>
-
-        <button class="service-btn" onclick="showService('electricity', this)">
-            <span class="service-icon">💡</span>
-            Electricity
-        </button>
-
-    </div>
-
-
-    <!-- Mobile Recharge -->
-    <section class="card" id="mobileSection">
-
-        <h2>📱 Mobile Recharge</h2>
-
-        <div class="form-group">
-            <label for="mobileNumber">मोबाइल नंबर</label>
-
-            <input
-                type="tel"
-                id="mobileNumber"
-                maxlength="10"
-                inputmode="numeric"
-                placeholder="10 अंकों का मोबाइल नंबर"
-                oninput="onlyNumbers(this)"
-            >
+    <!-- मोबाइल रीचार्ज फॉर्म -->
+    <div id="mobile-section" class="form-section active">
+        <div class="input-group">
+            <label for="mobileNumber">मोबाइल नंबर दर्ज करें</label>
+            <input type="tel" id="mobileNumber" placeholder="10 अंकों का नंबर" maxlength="10">
         </div>
-
-
-        <div class="form-group">
-
-            <label for="operator">SIM / Operator</label>
-
-            <select id="operator">
-
-                <option value="">Operator चुनें</option>
-
+        <div class="input-group">
+            <label for="mobileOperator">ऑपरेटर चुनें</label>
+            <select id="mobileOperator">
+                <option value="">-- ऑपरेटर चुनें --</option>
                 <option value="Jio">Jio</option>
-
                 <option value="Airtel">Airtel</option>
-
-                <option value="Vi">Vi</option>
-
+                <option value="Vi">Vi (Vodafone Idea)</option>
                 <option value="BSNL">BSNL</option>
-
             </select>
-
         </div>
-
-
-        <div class="form-group">
-
-            <label for="mobileAmount">Recharge Amount</label>
-
-            <input
-                type="number"
-                id="mobileAmount"
-                min="1"
-                placeholder="Amount डालें"
-                inputmode="decimal"
-            >
-
-            <div class="plans">
-
-                <button class="plan" onclick="setAmount(199)">
-                    ₹199
-                </button>
-
-                <button class="plan" onclick="setAmount(239)">
-                    ₹239
-                </button>
-
-                <button class="plan" onclick="setAmount(299)">
-                    ₹299
-                </button>
-
-                <button class="plan" onclick="setAmount(349)">
-                    ₹349
-                </button>
-
-                <button class="plan" onclick="setAmount(399)">
-                    ₹399
-                </button>
-
-                <button class="plan" onclick="setAmount(499)">
-                    ₹499
-                </button>
-
-            </div>
-
+        <div class="input-group">
+            <label for="mobileAmount">रीचार्ज राशि (₹)</label>
+            <input type="number" id="mobileAmount" placeholder="राशि दर्ज करें">
         </div>
-
-
-        <button class="recharge-btn" onclick="mobileRecharge()">
-            🔄 Recharge करें
-        </button>
-
-    </section>
-
-
-    <!-- DTH Recharge -->
-    <section class="card hidden" id="dthSection">
-
-        <h2>📺 DTH Recharge</h2>
-
-        <div class="form-group">
-
-            <label for="dthNumber">
-                Customer ID / Subscriber Number
-            </label>
-
-            <input
-                type="text"
-                id="dthNumber"
-                placeholder="DTH Customer ID डालें"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="dthOperator">
-                DTH Operator
-            </label>
-
-            <select id="dthOperator">
-
-                <option value="">Operator चुनें</option>
-
-                <option value="Tata Play">Tata Play</option>
-
-                <option value="Airtel Digital TV">
-                    Airtel Digital TV
-                </option>
-
-                <option value="Dish TV">
-                    Dish TV
-                </option>
-
-                <option value="Videocon D2H">
-                    Videocon D2H
-                </option>
-
-                <option value="Sun Direct">
-                    Sun Direct
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="dthAmount">
-                Recharge Amount
-            </label>
-
-            <input
-                type="number"
-                id="dthAmount"
-                min="1"
-                placeholder="Amount डालें"
-            >
-
-        </div>
-
-
-        <button class="recharge-btn" onclick="dthRecharge()">
-            📺 DTH Recharge करें
-        </button>
-
-    </section>
-
-
-    <!-- Electricity -->
-    <section class="card hidden" id="electricitySection">
-
-        <h2>💡 Electricity Bill</h2>
-
-        <div class="form-group">
-
-            <label for="electricityOperator">
-                Electricity Board
-            </label>
-
-            <select id="electricityOperator">
-
-                <option value="">
-                    Board चुनें
-                </option>
-
-                <option value="JVVNL">
-                    Rajasthan JVVNL
-                </option>
-
-                <option value="AVVNL">
-                    Rajasthan AVVNL
-                </option>
-
-                <option value="JDVVNL">
-                    Rajasthan JDVVNL
-                </option>
-
-                <option value="Other">
-                    Other
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="consumerNumber">
-                Consumer Number
-            </label>
-
-            <input
-                type="text"
-                id="consumerNumber"
-                placeholder="Consumer Number डालें"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="billAmount">
-                Bill Amount
-            </label>
-
-            <input
-                type="number"
-                id="billAmount"
-                min="1"
-                placeholder="Amount डालें"
-            >
-
-        </div>
-
-
-        <button class="recharge-btn" onclick="electricityBill()">
-            💡 Bill Pay करें
-        </button>
-
-    </section>
-
-
-    <!-- Features -->
-    <div class="features">
-
-        <div class="feature">
-            <span class="feature-icon">⚡</span>
-            Fast Service
-        </div>
-
-        <div class="feature">
-            <span class="feature-icon">🔒</span>
-            Secure
-        </div>
-
-        <div class="feature">
-            <span class="feature-icon">📞</span>
-            Support
-        </div>
-
+        <button onclick="processMobileRecharge()">Recharge करें</button>
     </div>
 
-</main>
+    <!-- DTH रीचार्ज फॉर्म -->
+    <div id="dth-section" class="form-section">
+        <div class="input-group">
+            <label for="dthNumber">DTH कस्टमर ID / सब्सक्राइबर ID</label>
+            <input type="text" id="dthNumber" placeholder="कस्टमर ID दर्ज करें">
+        </div>
+        <div class="input-group">
+            <label for="dthOperator">DTH ऑपरेटर चुनें</label>
+            <select id="dthOperator">
+                <option value="">-- ऑपरेटर चुनें --</option>
+                <option value="Tata Play">Tata Play</option>
+                <option value="Airtel Digital TV">Airtel Digital TV</option>
+                <option value="Dish TV">Dish TV</option>
+                <option value="Videocon d2h">Videocon d2h</option>
+                <option value="Sun Direct">Sun Direct</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="dthAmount">रीचार्ज राशि (₹)</label>
+            <input type="number" id="dthAmount" placeholder="राशि दर्ज करें">
+        </div>
+        <button onclick="processDthRecharge()">DTH Recharge करें</button>
+    </div>
 
-
-<footer>
-
-    <p>© 2026 HK Recharge. All Rights Reserved.</p>
-
-    <p class="demo">
-        ⚠️ Demo Version — Real Recharge अभी उपलब्ध नहीं है
-    </p>
-
-</footer>
-
+    <footer>
+        &copy; 2026 HK Recharge. Powered by Razorpay Secure Gateway.
+    </footer>
+</div>
 
 <script>
-
-    /* केवल नंबर */
-    function onlyNumbers(input) {
-
-        input.value = input.value.replace(/[^0-9]/g, '');
-
+    // टैब बदलने का फ़ंक्शन
+    function switchTab(type) {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.form-section').forEach(sec => sec.classList.remove('active'));
+        
+        if(type === 'mobile') {
+            document.querySelectorAll('.tab')[0].classList.add('active');
+            document.getElementById('mobile-section').classList.add('active');
+        } else {
+            document.querySelectorAll('.tab')[1].classList.add('active');
+            document.getElementById('dth-section').classList.add('active');
+        }
     }
 
+    // मोबाइल रीचार्ज और लाइव रेज़रपे गेटवे फ़ंक्शन
+    function processMobileRecharge() {
+        var number = document.getElementById("mobileNumber").value;
+        var operator = document.getElementById("mobileOperator").value;
+        var amount = document.getElementById("mobileAmount").value;
 
-    /* Service बदलना */
-    function showService(service, button) {
-
-        document.getElementById("mobileSection")
-            .classList.add("hidden");
-
-        document.getElementById("dthSection")
-            .classList.add("hidden");
-
-        document.getElementById("electricitySection")
-            .classList.add("hidden");
-
-
-        if (service === "mobile") {
-
-            document.getElementById("mobileSection")
-                .classList.remove("hidden");
-
-        }
-
-        if (service === "dth") {
-
-            document.getElementById("dthSection")
-                .classList.remove("hidden");
-
-        }
-
-        if (service === "electricity") {
-
-            document.getElementById("electricitySection")
-                .classList.remove("hidden");
-
-        }
-
-
-        document.querySelectorAll(".service-btn")
-            .forEach(function(btn) {
-
-                btn.classList.remove("active");
-
-            });
-
-
-        button.classList.add("active");
-
-    }
-
-
-    /* Mobile Amount */
-    function setAmount(amount) {
-
-        document.getElementById("mobileAmount")
-            .value = amount;
-
-    }
-
-
-    /* Mobile Recharge Demo */
-    function mobileRecharge() {
-
-        const number =
-            document.getElementById("mobileNumber").value;
-
-        const operator =
-            document.getElementById("operator").value;
-
-        const amount =
-            document.getElementById("mobileAmount").value;
-
-
-        if (number.length !== 10) {
-
-            alert(
-                "कृपया सही 10 अंकों का मोबाइल नंबर डालें।"
-            );
-
+        if (number.length !== 10 || isNaN(number)) {
+            alert("कृपया 10 अंकों का सही मोबाइल नंबर डालें।");
             return;
-
         }
-
-
         if (operator === "") {
-
-            alert(
-                "कृपया Mobile Operator चुनें।"
-            );
-
+            alert("कृपया ऑपरेटर चुनें।");
             return;
-
+        }
+        if (!amount || amount <= 0) {
+            alert("कृपया सही रीचार्ज राशि दर्ज करें।");
+            return;
         }
 
-
-        if (!amount || Number(amount) <= 0) {
-
-            alert(
-                "कृपया Recharge Amount डालें।"
-            );
-
-            return;
-
-        }
-
-
-    function mobileRecharge() {
-
-    
-var options = {
-    "key": "rzp_live_TVw3z0nKLpat5Q",
-    "amount": amount * 100,
-    "currency": "INR",
-    "name": "HK Recharge",
-    "description": "Mobile Recharge",
-    "handler": function (response){
-        alert("भुगतान सफल! Order ID: " + response.razorpay_payment_id);
-    }
-};
-var rzp1 = new Razorpay(options);
-rzp1.open();
-}
-
-    
-
-
-    /* DTH Demo */
-    function dthRecharge() {
-
-        const customer =
-            document.getElementById("dthNumber").value;
-
-        const operator =
-            document.getElementById("dthOperator").value;
-
-        const amount =
-            document.getElementById("dthAmount").value;
-
-
-        if (customer.trim() === "") {
-
-            alert(
-                "कृपया DTH Customer ID डालें।"
-            );
-
-            return;
-
-        }
-
-
-        if (operator === "") {
-
-            alert(
-                "कृपया DTH Operator चुनें।"
-            );
-
-            return;
-
-        }
-
-
-        if (!amount || Number(amount) <= 0) {
-
-            alert(
-                "कृपया Recharge Amount डालें।"
-            );
-
-            return;
-
-        }
-
-
-        alert(
-            "✅ Demo DTH Request\n\n" +
-            "Customer ID: " + customer + "\n" +
-            "Operator: " + operator + "\n" +
-            "Amount: ₹" + amount + "\n\n" +
-            "⚠️ यह Demo है।"
-        );
-
+        // लाइव रेज़रपे सेटिंग्स
+        var options = {
+            "key": "rzp_live_TVw3z0nKLpat5Q", // आपकी लाइव की
+            "amount": amount * 100, // पैसे पैसों में बदलते हैं (₹1 = 100 पैसे)
+            "currency": "INR",
+            "name": "HK Recharge",
+            "description": "Mobile Recharge - " + number + " (" + operator + ")",
+            "handler": function (response){
+                alert("भुगतान सफल रहा!\nTransaction ID: " + response.razorpay_payment_id + "\nआपका रीचार्ज जल्द ही प्रोसेस कर दिया जाएगा।");
+            },
+            "prefill": {
+                "contact": number
+            },
+            "theme": {
+                "color": "#0b63f6"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
     }
 
+    // DTH रीचार्ज और लाइव रेज़रपे गेटवे फ़ंक्शन
+    function processDthRecharge() {
+        var dthId = document.getElementById("dthNumber").value;
+        var dthOp = document.getElementById("dthOperator").value;
+        var dthAmt = document.getElementById("dthAmount").value;
 
-    /* Electricity Demo */
-    function electricityBill() {
-
-        const board =
-            document.getElementById("electricityOperator").value;
-
-        const consumer =
-            document.getElementById("consumerNumber").value;
-
-        const amount =
-            document.getElementById("billAmount").value;
-
-
-        if (board === "") {
-
-            alert(
-                "कृपया Electricity Board चुनें।"
-            );
-
+        if (dthId.trim() === "") {
+            alert("कृपया सही कस्टमर ID दर्ज करें।");
             return;
-
+        }
+        if (dthOp === "") {
+            alert("कृपया DTH ऑपरेटर चुनें।");
+            return;
+        }
+        if (!dthAmt || dthAmt <= 0) {
+            alert("कृपया सही रीचार्ज राशि दर्ज करें।");
+            return;
         }
 
-
-        if (consumer.trim() === "") {
-
-            alert(
-                "कृपया Consumer Number डालें।"
-            );
-
-            return;
-
-        }
-
-
-        if (!amount || Number(amount) <= 0) {
-
-            alert(
-                "कृपया Bill Amount डालें।"
-            );
-
-            return;
-
-        }
-
-
-        alert(
-            "✅ Demo Electricity Bill Request\n\n" +
-            "Board: " + board + "\n" +
-            "Consumer No: " + consumer + "\n" +
-            "Amount: ₹" + amount + "\n\n" +
-            "⚠️ यह Demo है।"
-        );
-
+        // लाइव रेज़रपे सेटिंग्स (DTH के लिए)
+        var options = {
+            "key": "rzp_live_TVw3z0nKLpat5Q", // आपकी लाइव की
+            "amount": dthAmt * 100,
+            "currency": "INR",
+            "name": "HK Recharge",
+            "description": "DTH Recharge - ID: " + dthId + " (" + dthOp + ")",
+            "handler": function (response){
+                alert("भुगतान सफल रहा!\nTransaction ID: " + response.razorpay_payment_id + "\nआपका DTH रीचार्ज जल्द ही सक्रिय कर दिया जाएगा।");
+            },
+            "theme": {
+                "color": "#0b63f6"
+            }
+        };
+        var rzp2 = new Razorpay(options);
+        rzp2.open();
     }
-
 </script>
 
 </body>
