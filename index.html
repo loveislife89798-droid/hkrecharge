@@ -664,13 +664,19 @@
         }
 
 
-    alert(
-    "✅ Demo Recharge Request\n\n" + 
-    "Mobile: " + number + "\n" +
-    "Operator: " + operator + "\n" +
-    "Amount: ₹" + amount + "\n\n" +
-    "⚠️ यह Demo है! अभी Real Recharge नहीं हुआ है।"
-);
+    
+var options = {
+    "key": "rzp_live_TVw3z0nKLpat5Q",
+    "amount": amount * 100,
+    "currency": "INR",
+    "name": "HK Recharge",
+    "description": "Mobile Recharge",
+    "handler": function (response){
+        alert("भुगतान सफल! Order ID: " + response.razorpay_payment_id);
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.open();
 
     
 
