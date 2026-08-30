@@ -193,7 +193,20 @@
         var operator = document.getElementById("mobileOperator").value;
         var amount = document.getElementById("mobileAmount").value;
 
-        if (number.length !== 10 || isNaN(number)) {
+         // टैब बदलने का बिल्कुल सही फ़ंक्शन
+    function switchTab(type) {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.form-section').forEach(sec => sec.classList.remove('active'));
+        
+        if(type === 'mobile') {
+            document.querySelectorAll('.tab')[0].classList.add('active');
+            document.getElementById('mobile-section').classList.add('active');
+        } else {
+            document.querySelectorAll('.tab')[1].classList.add('active');
+            document.getElementById('dth-section').classList.add('active');
+        }
+    }
+   if (number.length !== 10 || isNaN(number)) {
             alert("कृपया 10 अंकों का सही मोबाइल नंबर डालें।");
             return;
         }
