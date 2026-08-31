@@ -1,1 +1,1096 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>HK Recharge - Recharge & Bill Payment</title>
+
+<meta name="description" content="HK Recharge - Mobile Recharge, DTH Recharge, Electricity, Gas, Water, Broadband, FASTag and other bill payments.">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+button,input,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#0757d9,#11a8ff);
+    color:white;
+    padding:16px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.header-inner{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    background:white;
+    color:#0757d9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    font-weight:900;
+}
+
+.logo h1{
+    font-size:21px;
+}
+
+.logo small{
+    display:block;
+    opacity:.9;
+    font-size:11px;
+    margin-top:2px;
+}
+
+.menu-btn{
+    border:0;
+    background:rgba(255,255,255,.18);
+    color:white;
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    font-size:20px;
+}
+
+/* HERO */
+.hero{
+    max-width:1100px;
+    margin:20px auto;
+    padding:0 14px;
+}
+
+.hero-box{
+    background:linear-gradient(135deg,#063eb2,#0878ec,#15b6ff);
+    color:white;
+    border-radius:24px;
+    padding:28px 20px;
+    box-shadow:0 15px 35px rgba(0,89,220,.22);
+}
+
+.hero-box h2{
+    font-size:29px;
+    margin-bottom:8px;
+}
+
+.hero-box p{
+    line-height:1.6;
+    opacity:.95;
+}
+
+/* SERVICES */
+.services{
+    max-width:1100px;
+    margin:18px auto;
+    padding:0 14px;
+}
+
+.section-title{
+    font-size:20px;
+    margin-bottom:13px;
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.service{
+    background:white;
+    border:1px solid #e4eaf3;
+    border-radius:18px;
+    padding:16px 8px;
+    text-align:center;
+    box-shadow:0 5px 16px rgba(20,50,100,.05);
+    transition:.2s;
+}
+
+.service:hover{
+    transform:translateY(-3px);
+}
+
+.service-icon{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    background:#eaf3ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    margin:0 auto 8px;
+}
+
+.service b{
+    font-size:13px;
+}
+
+/* MAIN */
+.main{
+    max-width:1100px;
+    margin:20px auto;
+    padding:0 14px;
+}
+
+.card{
+    background:white;
+    border-radius:22px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(20,50,100,.07);
+    border:1px solid #e5eaf2;
+}
+
+.card h2{
+    margin-bottom:17px;
+}
+
+/* TABS */
+.tabs{
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    margin-bottom:18px;
+    padding-bottom:3px;
+}
+
+.tab{
+    flex:0 0 auto;
+    border:1px solid #dbe4f1;
+    background:#fff;
+    padding:10px 14px;
+    border-radius:12px;
+    color:#45546b;
+}
+
+.tab.active{
+    background:#0757d9;
+    color:white;
+    border-color:#0757d9;
+}
+
+/* FORM */
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:7px;
+    color:#34435b;
+}
+
+input,select{
+    width:100%;
+    padding:14px;
+    border:1px solid #d8e0ec;
+    border-radius:13px;
+    outline:none;
+    background:#fff;
+    color:#172033;
+}
+
+input:focus,select:focus{
+    border-color:#0878ec;
+    box-shadow:0 0 0 3px rgba(8,120,236,.1);
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.amount-box{
+    position:relative;
+}
+
+.amount-box span{
+    position:absolute;
+    left:14px;
+    top:14px;
+    font-weight:bold;
+}
+
+.amount-box input{
+    padding-left:30px;
+}
+
+.quick-amounts{
+    display:flex;
+    gap:7px;
+    overflow:auto;
+    margin-top:8px;
+}
+
+.quick-amount{
+    border:1px solid #dce5f1;
+    background:#f7faff;
+    padding:8px 13px;
+    border-radius:10px;
+    color:#0757d9;
+}
+
+/* BUTTON */
+.primary-btn{
+    width:100%;
+    border:0;
+    border-radius:14px;
+    padding:15px;
+    background:linear-gradient(135deg,#0757d9,#09a4f5);
+    color:white;
+    font-weight:800;
+    font-size:16px;
+    box-shadow:0 8px 18px rgba(7,87,217,.22);
+}
+
+.primary-btn:active{
+    transform:scale(.98);
+}
+
+/* INFO */
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:18px;
+}
+
+.info{
+    background:#f7faff;
+    border:1px solid #e1e9f5;
+    border-radius:16px;
+    padding:16px;
+}
+
+.info strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.info p{
+    font-size:12px;
+    color:#65728a;
+    line-height:1.5;
+}
+
+/* TRANSACTIONS */
+.transactions{
+    margin-top:20px;
+}
+
+.transaction{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:13px 0;
+    border-bottom:1px solid #edf1f6;
+}
+
+.transaction:last-child{
+    border-bottom:0;
+}
+
+.transaction-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:#eaf3ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.transaction-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.transaction small{
+    display:block;
+    color:#758198;
+    margin-top:3px;
+}
+
+.success{
+    color:#0a9b56;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* FOOTER */
+.footer{
+    background:#111b2e;
+    color:#cbd5e5;
+    margin-top:35px;
+    padding:30px 15px;
+    text-align:center;
+}
+
+.footer h3{
+    color:white;
+    margin-bottom:8px;
+}
+
+.footer p{
+    font-size:12px;
+    line-height:1.7;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin:18px 0;
+}
+
+.footer-links button{
+    border:0;
+    background:none;
+    color:#cbd5e5;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:999;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:430px;
+    background:white;
+    border-radius:22px;
+    padding:24px;
+    text-align:center;
+}
+
+.modal-icon{
+    font-size:48px;
+    margin-bottom:10px;
+}
+
+.modal-box h2{
+    margin-bottom:8px;
+}
+
+.modal-box p{
+    color:#66738a;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.close-btn{
+    margin-top:17px;
+    width:100%;
+    padding:13px;
+    border:0;
+    border-radius:12px;
+    background:#0757d9;
+    color:white;
+    font-weight:bold;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+    .service-grid{
+        grid-template-columns:repeat(4,1fr);
+        gap:8px;
+    }
+
+    .service{
+        padding:11px 4px;
+        border-radius:14px;
+    }
+
+    .service-icon{
+        width:42px;
+        height:42px;
+        font-size:20px;
+        border-radius:13px;
+    }
+
+    .service b{
+        font-size:10px;
+    }
+
+    .hero-box h2{
+        font-size:25px;
+    }
+
+    .row{
+        grid-template-columns:1fr;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:380px){
+    .service-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+<div class="header-inner">
+
+    <div class="logo">
+        <div class="logo-icon">HK</div>
+        <div>
+            <h1>HK Recharge</h1>
+            <small>Recharge • Bills • Payments</small>
+        </div>
+    </div>
+
+    <button class="menu-btn" onclick="showMessage('Menu','More settings and account features will be added here.')">
+        ☰
+    </button>
+
+</div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="hero-box">
+
+    <h2>सब कुछ एक ही जगह ⚡</h2>
+
+    <p>
+        Mobile Recharge, DTH, Electricity, Gas, Water,
+        Broadband और कई अन्य बिल भुगतान।
+    </p>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+<section class="services">
+
+<h2 class="section-title">हमारी Services</h2>
+
+<div class="service-grid">
+
+    <button class="service" onclick="setService('Mobile Recharge')">
+        <div class="service-icon">📱</div>
+        <b>Mobile</b>
+    </button>
+
+    <button class="service" onclick="setService('DTH Recharge')">
+        <div class="service-icon">📺</div>
+        <b>DTH</b>
+    </button>
+
+    <button class="service" onclick="setService('Electricity Bill')">
+        <div class="service-icon">⚡</div>
+        <b>Electricity</b>
+    </button>
+
+    <button class="service" onclick="setService('Gas Bill')">
+        <div class="service-icon">🔥</div>
+        <b>Gas</b>
+    </button>
+
+    <button class="service" onclick="setService('Water Bill')">
+        <div class="service-icon">💧</div>
+        <b>Water</b>
+    </button>
+
+    <button class="service" onclick="setService('Broadband')">
+        <div class="service-icon">🌐</div>
+        <b>Broadband</b>
+    </button>
+
+    <button class="service" onclick="setService('FASTag')">
+        <div class="service-icon">🚗</div>
+        <b>FASTag</b>
+    </button>
+
+    <button class="service" onclick="setService('Insurance')">
+        <div class="service-icon">🛡️</div>
+        <b>Insurance</b>
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- MAIN RECHARGE -->
+<main class="main">
+
+<div class="card">
+
+<h2 id="serviceTitle">📱 Mobile Recharge</h2>
+
+
+<!-- TABS -->
+<div class="tabs">
+
+<button class="tab active" onclick="setService('Mobile Recharge')">
+Mobile
+</button>
+
+<button class="tab" onclick="setService('DTH Recharge')">
+DTH
+</button>
+
+<button class="tab" onclick="setService('Electricity Bill')">
+Electricity
+</button>
+
+<button class="tab" onclick="setService('Gas Bill')">
+Gas
+</button>
+
+</div>
+
+
+<!-- MOBILE FORM -->
+<div id="mobileForm">
+
+<div class="form-group">
+
+<label>Mobile Number</label>
+
+<input
+id="mobileNumber"
+type="tel"
+inputmode="numeric"
+maxlength="10"
+placeholder="10 अंकों का मोबाइल नंबर"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Operator</label>
+
+<select id="operator">
+
+<option value="">Select Operator</option>
+<option>Jio</option>
+<option>Airtel</option>
+<option>Vi</option>
+<option>BSNL</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Recharge Amount</label>
+
+<div class="amount-box">
+
+<span>₹</span>
+
+<input
+id="amount"
+type="number"
+inputmode="numeric"
+placeholder="Amount"
+min="1"
+>
+
+</div>
+
+
+<div class="quick-amounts">
+
+<button class="quick-amount" onclick="setAmount(99)">₹99</button>
+<button class="quick-amount" onclick="setAmount(149)">₹149</button>
+<button class="quick-amount" onclick="setAmount(199)">₹199</button>
+<button class="quick-amount" onclick="setAmount(299)">₹299</button>
+<button class="quick-amount" onclick="setAmount(399)">₹399</button>
+
+</div>
+
+</div>
+
+
+<button class="primary-btn" onclick="demoRecharge()">
+💳 Pay & Recharge
+</button>
+
+</div>
+
+
+<!-- OTHER BILL FORM -->
+<div id="billForm" style="display:none;">
+
+<div class="form-group">
+
+<label id="billLabel">Consumer Number</label>
+
+<input
+id="consumerNumber"
+type="text"
+placeholder="Consumer / Account Number"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>Amount</label>
+
+<div class="amount-box">
+
+<span>₹</span>
+
+<input
+id="billAmount"
+type="number"
+inputmode="numeric"
+placeholder="Amount"
+min="1"
+>
+
+</div>
+
+</div>
+
+<button class="primary-btn" onclick="demoBill()">
+💳 Pay Bill
+</button>
+
+</div>
+
+
+<!-- INFO -->
+<div class="info-grid">
+
+<div class="info">
+<strong>🔒 सुरक्षित</strong>
+<p>Payment और customer information को सुरक्षित रखने के लिए designed interface.</p>
+</div>
+
+<div class="info">
+<strong>⚡ Fast</strong>
+<p>Simple और mobile-friendly recharge experience.</p>
+</div>
+
+<div class="info">
+<strong>📞 Support</strong>
+<p>Customer support और transaction history features के लिए तैयार structure.</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TRANSACTIONS -->
+<div class="card transactions">
+
+<h2>Recent Transactions</h2>
+
+<div id="transactions">
+
+<div style="text-align:center;color:#7b879b;padding:20px;">
+अभी कोई transaction नहीं है।
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<h3>HK Recharge</h3>
+
+<p>
+Mobile Recharge • DTH • Electricity • Gas • Water • Broadband • FASTag
+</p>
+
+<div class="footer-links">
+
+<button onclick="showMessage('About HK Recharge','HK Recharge एक modern recharge और bill payment platform interface है.')">
+About
+</button>
+
+<button onclick="showMessage('Privacy Policy','आपकी privacy को महत्व दिया जाता है। Real service शुरू करने से पहले proper privacy policy जोड़ें.')">
+Privacy
+</button>
+
+<button onclick="showMessage('Terms & Conditions','Real payment और bill services activate करने से पहले terms and conditions जोड़ना आवश्यक है.')">
+Terms
+</button>
+
+<button onclick="showMessage('Contact','Customer support details यहाँ बाद में जोड़ी जा सकती हैं.')">
+Contact
+</button>
+
+</div>
+
+<p>© 2026 HK Recharge. All Rights Reserved.</p>
+
+</footer>
+
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<div class="modal-icon" id="modalIcon">✅</div>
+
+<h2 id="modalTitle">Success</h2>
+
+<p id="modalText"></p>
+
+<button class="close-btn" onclick="closeModal()">
+ठीक है
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+let currentService = "Mobile Recharge";
+
+
+function setAmount(value){
+
+    document.getElementById("amount").value = value;
+
+}
+
+
+function setService(service){
+
+    currentService = service;
+
+    document.getElementById("serviceTitle").innerText =
+        service === "Mobile Recharge"
+        ? "📱 Mobile Recharge"
+        : service;
+
+    const mobileForm =
+        document.getElementById("mobileForm");
+
+    const billForm =
+        document.getElementById("billForm");
+
+    if(service === "Mobile Recharge"){
+
+        mobileForm.style.display = "block";
+        billForm.style.display = "none";
+
+    }else{
+
+        mobileForm.style.display = "none";
+        billForm.style.display = "block";
+
+        let label = "Consumer / Account Number";
+
+        if(service === "DTH Recharge"){
+            label = "Customer / Subscriber ID";
+        }
+
+        if(service === "Electricity Bill"){
+            label = "Electricity Consumer Number";
+        }
+
+        if(service === "Gas Bill"){
+            label = "Gas Consumer Number";
+        }
+
+        if(service === "Water Bill"){
+            label = "Water Consumer Number";
+        }
+
+        if(service === "Broadband"){
+            label = "Broadband Account Number";
+        }
+
+        if(service === "FASTag"){
+            label = "Vehicle / FASTag Number";
+        }
+
+        if(service === "Insurance"){
+            label = "Policy Number";
+        }
+
+        document.getElementById("billLabel").innerText = label;
+
+    }
+
+}
+
+
+function demoRecharge(){
+
+    const number =
+        document.getElementById("mobileNumber").value.trim();
+
+    const operator =
+        document.getElementById("operator").value;
+
+    const amount =
+        document.getElementById("amount").value;
+
+
+    if(!/^[6-9][0-9]{9}$/.test(number)){
+
+        showMessage(
+            "गलत मोबाइल नंबर",
+            "कृपया सही 10 अंकों का भारतीय मोबाइल नंबर डालें।",
+            "⚠️"
+        );
+
+        return;
+    }
+
+
+    if(!operator){
+
+        showMessage(
+            "Operator चुनें",
+            "कृपया Jio, Airtel, Vi या BSNL में से अपना operator चुनें।",
+            "⚠️"
+        );
+
+        return;
+    }
+
+
+    if(!amount || Number(amount) <= 0){
+
+        showMessage(
+            "Amount डालें",
+            "कृपया Recharge Amount डालें।",
+            "⚠️"
+        );
+
+        return;
+    }
+
+
+    addTransaction(
+        "📱",
+        "Mobile Recharge",
+        number,
+        amount
+    );
+
+
+    showMessage(
+        "Demo Recharge",
+        "Recharge Request सफलतापूर्वक प्राप्त हुई।\n\n" +
+        "Mobile: " + number +
+        "\nOperator: " + operator +
+        "\nAmount: ₹" + amount +
+        "\n\n⚠️ यह अभी DEMO है। असली Recharge नहीं हुआ।",
+        "📱"
+    );
+
+}
+
+
+function demoBill(){
+
+    const number =
+        document.getElementById("consumerNumber").value.trim();
+
+    const amount =
+        document.getElementById("billAmount").value;
+
+
+    if(!number){
+
+        showMessage(
+            "Number डालें",
+            "कृपया Consumer / Account Number डालें।",
+            "⚠️"
+        );
+
+        return;
+    }
+
+
+    if(!amount || Number(amount) <= 0){
+
+        showMessage(
+            "Amount डालें",
+            "कृपया Amount डालें।",
+            "⚠️"
+        );
+
+        return;
+    }
+
+
+    addTransaction(
+        "🧾",
+        currentService,
+        number,
+        amount
+    );
+
+
+    showMessage(
+        "Demo Payment",
+        currentService +
+        " की payment request सफलतापूर्वक प्राप्त हुई।\n\n" +
+        "Number: " + number +
+        "\nAmount: ₹" + amount +
+        "\n\n⚠️ यह अभी DEMO है। असली bill payment नहीं हुआ।",
+        "🧾"
+    );
+
+}
+
+
+function addTransaction(icon,type,number,amount){
+
+    const container =
+        document.getElementById("transactions");
+
+
+    const empty =
+        container.querySelector("div[style]");
+
+    if(empty){
+        container.innerHTML = "";
+    }
+
+
+    const item =
+        document.createElement("div");
+
+    item.className = "transaction";
+
+    item.innerHTML = `
+
+        <div class="transaction-left">
+
+            <div class="transaction-icon">
+                ${icon}
+            </div>
+
+            <div>
+                <b>${type}</b>
+                <small>${number}</small>
+            </div>
+
+        </div>
+
+        <div style="text-align:right">
+            <b>₹${amount}</b>
+            <div class="success">DEMO</div>
+        </div>
+
+    `;
+
+
+    container.prepend(item);
+
+}
+
+
+function showMessage(title,text,icon="✅"){
+
+    document.getElementById("modalTitle").innerText = title;
+
+    document.getElementById("modalText").innerText = text;
+
+    document.getElementById("modalIcon").innerText = icon;
+
+    document.getElementById("modal").classList.add("show");
+
+}
+
+
+function closeModal(){
+
+    document.getElementById("modal").classList.remove("show");
+
+}
+
+
+document.getElementById("mobileNumber")
+.addEventListener("input",function(){
+
+    this.value =
+        this.value.replace(/\D/g,"").slice(0,10);
+
+});
+
+</script>
+
+</body>
+</html>
